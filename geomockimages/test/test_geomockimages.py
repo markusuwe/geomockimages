@@ -111,6 +111,58 @@ def test_sar_image_1band_pair():
     assert np.abs(np.sum(diff)) < 1000
 
 
+def test_sar_image_1band_pair_change():
+    """
+    Test for a pair of SAR 1-band amplitude images that can be used e.g. for change detection
+    The cretaed pair has noch changes.
+    """
+    with tempfile.TemporaryDirectory() as td:
+        _, data1 = GeoMockImage(30, 20, 1, "uint16", "SAR", out_dir=Path(td)).create(
+            seed=11, noise_seed=5, noise_intensity=0.01
+        )
+
+        test_img, data2 = GeoMockImage(
+            30, 20, 1, "uint16", "SAR", out_dir=Path(td)
+        ).create(seed=11, noise_seed=5, noise_intensity=0.01, change_pixels=10)
+
+        # Make sure image data was properly written to disk
+        with rio.open(str(test_img)) as src:
+            data_from_file = src.read()
+            assert np.array_equal(data2, data_from_file)
+
+        # 10 pixels values should be changed
+        assert np.sum(data1 != data2) == 10
+
+
+def test_get_change_spot_sizes():
+    """
+    Test for the get_change_spot_sizes function
+    """
+    change_pixels_count = 12
+
+    with tempfile.TemporaryDirectory() as td:
+        spot_list = GeoMockImage(
+            30, 20, 1, "uint16", "SAR", out_dir=Path(td)
+        ).get_change_spot_sizes(change_pixels=change_pixels_count)
+
+        assert sum(spot_list) == change_pixels_count
+
+
+def test_get_change_spot_indices():
+    """
+    Test for the get_change_spot_indices function
+    """
+    spot_sizes = [1, 4, 2]
+
+    with tempfile.TemporaryDirectory() as td:
+        change_mask = GeoMockImage(
+            30, 20, 1, "uint16", "SAR", out_dir=Path(td)
+        ).get_change_spot_indices(spot_sizes=spot_sizes)
+
+        assert np.shape(change_mask) == (20, 30)
+        assert np.sum(change_mask) == 7
+
+
 def test_cog():
     with tempfile.TemporaryDirectory() as td:
         test_img, _ = GeoMockImage(

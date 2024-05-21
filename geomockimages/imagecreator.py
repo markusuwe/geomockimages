@@ -70,6 +70,7 @@ class GeoMockImage:
             ysize: Number of pixels in y-direction.
             num_bands: Number of image bands.
             data_type: Rasterio datatype as string.
+            image_type: Either 'optical' or 'SAR'.
             out_dir: Path where the image should be created. Defaults to a random id if not provided..
             crs: EPSG identifier of used coordinate reference system (default 3837).
             nodata: Value representing nodata within each raster band, default is 0. If set to -1 no nodata value set.
@@ -78,7 +79,7 @@ class GeoMockImage:
 
         Example:
             ```python
-            input_img, an_array = FakeGeoImage(
+            input_img, an_array = GeoMockImage(
                 10, 10, 4, "uint16", input_dir, nodata_fill=3
             ).create(seed=45)
             ```

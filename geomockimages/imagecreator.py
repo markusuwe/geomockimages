@@ -70,6 +70,7 @@ class GeoMockImage:
             ysize: Number of pixels in y-direction.
             num_bands: Number of image bands.
             data_type: Rasterio datatype as string.
+            image_type: Either 'optical' or 'SAR'.
             out_dir: Path where the image should be created. Defaults to a random id if not provided..
             crs: EPSG identifier of used coordinate reference system (default 3837).
             nodata: Value representing nodata within each raster band, default is 0. If set to -1 no nodata value set.
@@ -78,7 +79,7 @@ class GeoMockImage:
 
         Example:
             ```python
-            input_img, an_array = FakeGeoImage(
+            input_img, an_array = GeoMockImage(
                 10, 10, 4, "uint16", input_dir, nodata_fill=3
             ).create(seed=45)
             ```
@@ -241,8 +242,6 @@ class GeoMockImage:
             if change_pixels > 0:
                 bands = self.add_change_pixels(
                     bands=bands,
-                    seed=seed,
-                    noise_intensity=noise_intensity,
                     change_pixels=change_pixels,
                 )
 
@@ -251,14 +250,12 @@ class GeoMockImage:
     def add_change_pixels(
         self,
         bands,
-        seed: Union[int, None],
-        noise_intensity: float = 1.0,
         change_pixels: int = 0,
     ) -> List[np.ndarray]:
         """
+        Changes a few pixels in the image to simulate changes
+
         Args:
-            seed: A random seed number. Ensures reproducibility.
-            noise_seed: A random seed number for noise
             noise_intensity: multiplier for noise
             change_pixels: number of pixels that are changed from the original value. Usable for change detection purposes
         Returns:
@@ -274,6 +271,8 @@ class GeoMockImage:
 
     def get_change_spot_sizes(self, change_pixels: int) -> List[int]:
         """
+        Given the overall number of change pixels, this method defines their individual sizes.
+
         Args:
             change_pixels: number of pixels that are changed from the original value. Usable for change detection purposes
         Returns:
@@ -296,6 +295,7 @@ class GeoMockImage:
     def get_change_spot_indices(self, spot_sizes):
         """
         Given the sizes of the change spots, this method identifies their spatial location within the image
+
         Args:
             spot_sizes: List of sizes of the change spots
         Returns:
@@ -360,6 +360,8 @@ class GeoMockImage:
 
     def apply_change(self, bands, spot_indices, change_factor=1.3):
         """
+        Given the bands, apply the alrady localised change pixels
+
         Args:
             bands: List of numpy arrays representing simulated image.
             spot_indices: A boolean mask showing the location of the change pixels.

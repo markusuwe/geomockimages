@@ -16,7 +16,7 @@ geospatial images (so far geotiffs) in a parameterised way.
 
 ## Install package
 ```bash
-pip install fake-geo-images
+pip install geomockimages
 ```
 
 ## Run tests

@@ -70,13 +70,13 @@ def test_sar_image_1band():
             assert data.shape == (1, 6, 5)
 
 
-def test_sar_image_2band_nodata():
+def test_sar_image_2band():
     """
-    Test for a 2-band (dual pol) SAR image such as Sentinei-1 with some nodata
+    Test for a 2-band (dual pol) SAR image such as Sentinei-1
     """
     with tempfile.TemporaryDirectory() as td:
         test_img, data = GeoMockImage(
-            5, 3, 2, "uint16", "SAR", out_dir=Path(td)
+            5, 8, 2, "uint16", "SAR", out_dir=Path(td)
         ).create(
             seed=22,
             noise_intensity=2.0,
@@ -87,7 +87,7 @@ def test_sar_image_2band_nodata():
             assert np.array_equal(data, data_from_file)
             assert data.max() < 500
             assert data.dtype == np.uint16
-            assert data.shape == (2, 3, 5)
+            assert data.shape == (2, 8, 5)
 
 
 def test_sar_image_1band_pair():

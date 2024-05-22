@@ -6,12 +6,12 @@ parent_dir = Path(__file__).resolve().parent
 setup(
     name="geomockimages",
     version="0.2.0",
-    author="Markus Mueller",
+    author="Markus Müller",
     author_email="markus.u.mueller@zoho.com",
     description="Geospatial mock images for unit tests",
     long_description=parent_dir.joinpath("README.md").read_text(encoding="utf-8"),
     long_description_content_type="text/markdown",
-    url="https://github.com/up42/fake-geo-images",
+    url="https://github.com/markusuwe/geomockimages",
     packages=find_packages(),
     license="MIT",
     classifiers=[
@@ -24,5 +24,5 @@ setup(
     install_requires=parent_dir.joinpath("requirements.txt")
     .read_text(encoding="utf-8")
     .splitlines(),
-    python_requires=">=3.6",
+    python_requires=">=3.8",
 )

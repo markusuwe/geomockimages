@@ -1,10 +1,6 @@
-# fake-geo-images
+# geomockimages
 
 A module to programmatically create geotiff images which can be used for unit tests.
-
-<p align="center">
-    <img src="./coverage.svg">
-</p>
 
 The underlying idea is that in order to write unit tests for geospatial image processsing algorithms,
 it is necessary to have an actual input image file or array. Organising these test images becomes a chore over time,

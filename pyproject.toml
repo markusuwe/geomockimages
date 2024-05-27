@@ -1,10 +1,12 @@
 [tool.poetry]
 name = "geomockimages"
-version = "0.2.1"
+version = "0.2.3"
 description = "A module to programmatically create geotiff images which can be used for unit tests."
 authors = ["Markus Müller <markus.u.mueller@zoho.com>"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://github.com/markusuwe/geomockimages"
+repository = "https://github.com/markusuwe/geomockimages"
 
 [tool.poetry.dependencies]
 python = "^3.10"

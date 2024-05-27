@@ -10,14 +10,13 @@ is the danger that they are not updated according to changes in the code repo.
 **geomockimages** provides a solution to the problem by providing simple code that allows to create
 geospatial images (so far geotiffs) in a parameterised way.
 
+**geomockimages** is able to create both electro-optical as well as SAR images. More specificially, 4-band optical images and SAR images with one or two polarizations are supported explicitely. It is also possible to create images with more or less images, but the results will be less realistic.
+
+Besides singe image tests, **geomockimages** can also create image pairs with small differences. This allows to do basic testing of change detection algorithms.
+
 ## Install package
 ```bash
 pip install geomockimages
-```
-
-## Run tests
-```bash
-pytest
 ```
 
 ## Usage
@@ -62,3 +61,19 @@ def test_ndvi():
         assert np.nanmax(ndvi_array) <= 1
 
 ```
+
+## Documentation
+
+**geomockimages** was written for python engineers. The best way to learn about the option it offers do:
+
+```python
+from geomockimages.imagecreator import GeoMockImage
+help(GeoMockImage)
+```
+
+## More examples
+...can be found within two jupyter notebooks:
+
+[Basic 4-band optical example](]https://github.com/markusuwe/geomockimages/blob/main/notebooks/example1_radiance.ipynb)
+
+[SAR images and change detection](https://github.com/markusuwe/geomockimages/blob/main/notebooks/example2_sar_imagepair.ipynb)

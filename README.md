@@ -31,14 +31,14 @@ from pathlib import Path
 
 from rasterio.transform import from_origin
 from my_image_processing import ndvi
-from fake_geo_images.fakegeoimages import FakeGeoImage
+from geomockimages.imagecreator import GeoMockImage
 
 def test_ndvi():
     """
     A unit test if an NDVI method works in general
     """
     # Create 4-band image simulating RGBN as needed for NDVI
-    test_image, _ = FakeGeoImage(
+    test_image, _ = GeoMockImage(
         300,
         150,
         4,
@@ -55,10 +55,10 @@ def test_ndvi():
     with rio.open(str(ndvi_image)) as src:
         ndvi_array = src.read()
         # NDVI only has one band of same size as input bands
-        assert ndvi_array.shape == (1, 300, 150)
+        assert ndvi_array.shape == (1, 150, 300)
         # NDVI has float values between -1 and 1
-        assert ndvi_array.dtype == np.float
-        assert ndvi_array.min >= -1
-        assert ndvi_array.max <= 1
+        assert ndvi_array.dtype == np.dtype('float32')
+        assert np.nanmin(ndvi_array) >= -1
+        assert np.nanmax(ndvi_array) <= 1
 
 ```

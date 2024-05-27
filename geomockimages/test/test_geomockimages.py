@@ -102,7 +102,7 @@ def test_sar_image_1band_pair():
 
     with tempfile.TemporaryDirectory() as td:
         test_img2, data2 = GeoMockImage(
-            10, 5, 1, "uint16", "SAR", out_dir=Path(td)
+            10, 5, 1, "uint16", "sar", out_dir=Path(td)
         ).create(seed=4, noise_seed=3, noise_intensity=2.0)
 
     # The two images should appear like they were taken at different dates from the same area

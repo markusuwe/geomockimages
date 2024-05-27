@@ -89,7 +89,7 @@ class GeoMockImage:
         self.ysize = ysize
         self.num_bands = num_bands
         self.data_type = data_type
-        self.image_type = image_type
+        self.image_type = image_type.lower()
         self.out_dir = out_dir
         self.crs = crs
         self.nodata_fill = nodata_fill
@@ -213,7 +213,7 @@ class GeoMockImage:
 
             if self.image_type == "optical":
                 lc_values = enumerate(LC_CLASSES_OPTICAL.values(), 1)
-            elif self.image_type == "SAR":
+            elif self.image_type == "sar":
                 lc_values = enumerate(LC_CLASSES_SAR.values(), 1)
             else:
                 raise Exception("Only optical and SAR images are supported")

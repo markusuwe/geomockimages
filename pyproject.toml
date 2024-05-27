@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "geomockimages"
-version = "0.2.3"
+version = "0.2.4"
 description = "A module to programmatically create geotiff images which can be used for unit tests."
 authors = ["Markus Müller <markus.u.mueller@zoho.com>"]
 license = "MIT"

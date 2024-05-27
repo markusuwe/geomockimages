@@ -74,6 +74,6 @@ help(GeoMockImage)
 ## More examples
 ...can be found within two jupyter notebooks:
 
-[Basic 4-band optical example](]https://github.com/markusuwe/geomockimages/blob/main/notebooks/example1_radiance.ipynb)
+[Basic 4-band optical example](https://github.com/markusuwe/geomockimages/blob/main/notebooks/example1_radiance.ipynb)
 
 [SAR images and change detection](https://github.com/markusuwe/geomockimages/blob/main/notebooks/example2_sar_imagepair.ipynb)

@@ -239,11 +239,11 @@ class GeoMockImage:
             bands.append(data_ar)
             band_idx += 1
 
-            if change_pixels > 0:
-                bands = self.add_change_pixels(
-                    bands=bands,
-                    change_pixels=change_pixels,
-                )
+        if change_pixels > 0:
+            bands = self.add_change_pixels(
+                bands=bands,
+                change_pixels=change_pixels,
+            )
 
         return bands
 
